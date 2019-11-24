@@ -6,15 +6,21 @@
 //  Copyright © 2019 Lorin. All rights reserved.
 //
 
+import SnapKit
 import UIKit
 
 class ViewController: UIViewController {
 
+    let label = UILabel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        
+        view.backgroundColor = .white
     }
 
+    
+    
 
 }
 
