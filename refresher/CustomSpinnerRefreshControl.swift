@@ -31,7 +31,13 @@ class CustomSpinnerRefreshControl: UIRefreshControl {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func animate() {
+    override public func beginRefreshing() {
+        super.beginRefreshing()
+        animate()
+    }
+    
+    // MARK:- Private helpers
+    private func animate() {
         isAnimating = true
         
         UIView.animate(withDuration: animationSegmentTime, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
