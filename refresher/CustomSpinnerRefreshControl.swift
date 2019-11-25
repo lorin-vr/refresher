@@ -19,7 +19,7 @@ class CustomSpinnerRefreshControl: UIRefreshControl {
     }()
     
     private let contentView = UIView()
-    private let animationSegmentTime = 1.0
+    private let animationSegmentTime = 0.8
     
     override public init() {
         super.init()
