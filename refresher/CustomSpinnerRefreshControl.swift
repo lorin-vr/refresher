@@ -10,16 +10,32 @@ import UIKit
 
 class CustomSpinnerRefreshControl: UIRefreshControl {
     
-    private var isAnimating = false
-    
-    private lazy var spinnerView: UIImageView = {
+    private lazy var spinner: UIImage? = {
         let bundle = Bundle(for: type(of: self))
-        let imageView = UIImageView(image: UIImage(named: "donut", in: bundle, compatibleWith: nil))
-        return imageView
+        return UIImage(named: "donut", in: bundle, compatibleWith: nil)
     }()
     
     private let contentView = UIView()
-    private let animationSegmentTime = 0.8
+    
+    // Needs to be lazy because we don't have contentView.bounds yet
+    private lazy var spinnerLayer: CALayer = {
+        let layer = CALayer()
+        layer.contents = spinner?.cgImage
+        layer.frame = contentView.bounds
+        layer.contentsScale = 3.0
+        layer.contentsGravity = CALayerContentsGravity.center
+        return layer
+    }()
+    
+    private let rotation: CAKeyframeAnimation = {
+       let rotation = CAKeyframeAnimation(keyPath: "transform.rotation")
+        rotation.keyTimes = [0, 0.5, 1.0]
+        rotation.values = [0, CGFloat(Double.pi), CGFloat(Double.pi * 2)]
+        rotation.duration = 1.6
+        rotation.repeatCount = Float.infinity
+        rotation.isRemovedOnCompletion = false
+        return rotation
+    }()
     
     override public init() {
         super.init()
@@ -36,30 +52,34 @@ class CustomSpinnerRefreshControl: UIRefreshControl {
         animate()
     }
     
+    override public func endRefreshing() {
+        super.endRefreshing()
+        
+        // It would be nice to remove the animation here, but endRefreshing() is called too early.
+        // If we remove it here, the spinner will disappear before it slides up off screen
+//        spinnerLayer.removeAllAnimations()
+//        spinnerLayer.removeFromSuperlayer()
+    }
+    
+    private var setUpComplete: Bool = false
+    
+    private func setUpAnimation() {
+        contentView.layer.addSublayer(spinnerLayer)
+        spinnerLayer.add(rotation, forKey: "transform.rotation")
+        setUpComplete = true
+    }
+    
     // MARK:- Private helpers
     private func animate() {
-        isAnimating = true
-        
-        UIView.animate(withDuration: animationSegmentTime, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
-            self.spinnerView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi))
-        }, completion: { (finished) -> Void in
-            UIView.animate(withDuration: self.animationSegmentTime, delay: 0.0, options: UIView.AnimationOptions.curveLinear, animations: { () -> Void in
-                self.spinnerView.transform = CGAffineTransform(rotationAngle: CGFloat(Double.pi * 2))
-            }, completion: { (finished) -> Void in
-                if self.isRefreshing {
-                    self.animate()
-                } else {
-                    self.isAnimating = false
-                }
-            })
-        })
+        if !setUpComplete {     // Add the layer with animation only once so we don't end up with a leak
+            setUpAnimation()
+        }
     }
     
     private func buildView() {
         backgroundColor = .clear
         tintColor = .clear
         
-        contentView.addSubview(spinnerView)
         addSubview(contentView)
     }
     
@@ -68,11 +88,6 @@ class CustomSpinnerRefreshControl: UIRefreshControl {
             make.center.equalToSuperview()
             make.width.equalTo(600)
             make.height.equalTo(50)
-        }
-        spinnerView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
-            make.centerX.equalToSuperview()
-            make.width.height.equalTo(50)
         }
     }
 }
