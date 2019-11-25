@@ -85,7 +85,8 @@ class CustomSpinnerRefreshControl: UIRefreshControl {
     
     private func buildLayout() {
         contentView.snp.makeConstraints { make in
-            make.center.equalToSuperview()
+            make.top.equalToSuperview().offset(20)
+            make.centerX.equalToSuperview()
             make.width.equalTo(600)
             make.height.equalTo(50)
         }
