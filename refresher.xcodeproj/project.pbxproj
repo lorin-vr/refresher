@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		06764D9A71BF8E62FC6F072C /* Pods_refresherTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 793223EDDD93C0F1D6E49254 /* Pods_refresherTests.framework */; };
+		5A596ACC238B81AA0037F17C /* CustomSpinnerRefreshControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5A596ACB238B81AA0037F17C /* CustomSpinnerRefreshControl.swift */; };
 		5AD6BD83238B3B9600F1A109 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD6BD82238B3B9600F1A109 /* AppDelegate.swift */; };
 		5AD6BD87238B3B9600F1A109 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5AD6BD86238B3B9600F1A109 /* ViewController.swift */; };
 		5AD6BD8C238B3B9600F1A109 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5AD6BD8B238B3B9600F1A109 /* Assets.xcassets */; };
@@ -30,6 +31,7 @@
 		4461CF7C8A4AAC911F997878 /* Pods_refresher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_refresher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		468E301B6A96AA61CB36BF17 /* Pods-refresher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refresher.release.xcconfig"; path = "Target Support Files/Pods-refresher/Pods-refresher.release.xcconfig"; sourceTree = "<group>"; };
 		55A43F4738A994392ABF51D2 /* Pods-refresher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-refresher.debug.xcconfig"; path = "Target Support Files/Pods-refresher/Pods-refresher.debug.xcconfig"; sourceTree = "<group>"; };
+		5A596ACB238B81AA0037F17C /* CustomSpinnerRefreshControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomSpinnerRefreshControl.swift; sourceTree = "<group>"; };
 		5AD6BD7F238B3B9600F1A109 /* refresher.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = refresher.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		5AD6BD82238B3B9600F1A109 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		5AD6BD86238B3B9600F1A109 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXGroup;
 			children = (
 				5AD6BD82238B3B9600F1A109 /* AppDelegate.swift */,
+				5A596ACB238B81AA0037F17C /* CustomSpinnerRefreshControl.swift */,
 				5AD6BD86238B3B9600F1A109 /* ViewController.swift */,
 				5AD6BD8B238B3B9600F1A109 /* Assets.xcassets */,
 				5AD6BD8D238B3B9600F1A109 /* LaunchScreen.storyboard */,
@@ -294,6 +297,7 @@
 			files = (
 				5AD6BD87238B3B9600F1A109 /* ViewController.swift in Sources */,
 				5AD6BD83238B3B9600F1A109 /* AppDelegate.swift in Sources */,
+				5A596ACC238B81AA0037F17C /* CustomSpinnerRefreshControl.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

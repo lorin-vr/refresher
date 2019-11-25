@@ -13,6 +13,7 @@ class ViewController: UITableViewController {
 
     private var tableData: [Int] = Array(1...15)
     
+    private let donutRefreshControl = CustomSpinnerRefreshControl()
     private let cellId = "simpleCell"
     private let rowCount = 15
     
@@ -41,16 +42,21 @@ class ViewController: UITableViewController {
     // MARK:- Private helpers
     private func buildView() {
         view.backgroundColor = .white
-        refreshControl = UIRefreshControl()
+        refreshControl = donutRefreshControl
         refreshControl?.addTarget(self, action: #selector(refresh(_:)), for: .valueChanged)
     }
     
     @objc private func refresh(_ sender: Any) {
-        tableData = tableData.map { i in
-            return i * 2
-        }
-        refreshControl?.endRefreshing()
-        tableView.reloadData()
+        donutRefreshControl.animate()
+        
+        // Use a timer to simulate a network call that takes a while to complete
+        let _ = Timer.scheduledTimer(withTimeInterval: 1.2, repeats: false, block: { timer in
+            self.tableData = self.tableData.map { i in
+                return i * 2
+            }
+            self.refreshControl?.endRefreshing()
+            self.tableView.reloadData()
+        })
     }
 }
 

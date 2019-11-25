@@ -1,2 +1,2 @@
 # refresher
-Custom refresh control animation for iOS
+Project to play around with using a custom spinner for a UIRefreshControl.
